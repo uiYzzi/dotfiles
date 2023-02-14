@@ -18,6 +18,10 @@ super + x
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# Launch Apps
+super + shift + {f,m,e}
+	{dolphin,alacritty --command musicfox,microsoft-edge-stable}
+
 #
 # bspwm hotkeys
 #
