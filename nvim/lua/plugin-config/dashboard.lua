@@ -13,22 +13,27 @@ db.custom_footer = {
 db.custom_center = {
   {
     icon = "  ",
-    desc = "Projects                            ",
+    desc = "项目                                ",
     action = "Telescope projects",
   },
   {
+    icon = "  ",
+    desc = "搜索文件                              ",
+    action = "Telescope find_files",
+  },
+  {
     icon = "  ",
-    desc = "Recently files                      ",
+    desc = "最近的文件                           ",
     action = "Telescope oldfiles",
   },
   {
     icon = "  ",
-    desc = "Edit keybindings                    ",
+    desc = "编辑快捷键                           ",
     action = "edit ~/.config/nvim/lua/keybindings.lua",
   },
   {
     icon = "  ",
-    desc = "Edit Projects                       ",
+    desc = "编辑历史项目                         ",
     action = "edit ~/.local/share/nvim/project_nvim/project_history",
   },
   -- {
@@ -45,11 +50,6 @@ db.custom_center = {
   --   icon = "  ",
   --   desc = "Edit init.lua                       ",
   --   action = "edit ~/.config/nvim/init.lua",
-  -- },
-  -- {
-  --   icon = "  ",
-  --   desc = "Find file                           ",
-  --   action = "Telescope find_files",
   -- },
   -- {
   --   icon = "  ",
