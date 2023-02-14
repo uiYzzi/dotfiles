@@ -17,6 +17,8 @@ Plug 'mhinz/vim-startify'
 Plug 'connorholyday/vim-snazzy'
 " markdown 预览插件
 Plug 'iamcco/markdown-preview.nvim'
+" rnvimr 文件管理插件
+Plug 'kevinhwang91/rnvimr'
 call plug#end()
 
 " 配置 vim-airline 标签栏插件
