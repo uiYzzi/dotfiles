@@ -22,6 +22,11 @@ bspc config active_border_color "#1b7eab"
 bspc config focused_border_color "#1b7eab"
 bspc config presel_border_color "#ffffff"
 
+## Always Floating Apps
+declare -a floating=(alacritty-float Pcmanfm Thunar Onboard Yad 'Firefox:Places' \
+Viewnior feh Nm-connection-editor)
+for i in ${floating[@]}; do
+   bspc rule -a $i state=floating follow=on focus=on; done
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
