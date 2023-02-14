@@ -35,7 +35,6 @@ indent_blankline.setup({
     "TelescopePrompt",
     "lsp-installer",
     "lspinfo",
-    "toggleterm",
   },
   -- 竖线样式
   -- char = '¦'
