@@ -81,4 +81,5 @@ vim.o.showtabline = 2
 vim.o.showmode = false
 -- 配置剪切板
 vim.opt.clipboard = "unnamedplus"
+-- rnvimr 选择一个文件后隐藏窗口
 vim.g.rnvimr_enable_picker = 1
