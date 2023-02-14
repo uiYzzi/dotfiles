@@ -1,69 +1,163 @@
-## 📜 Neovim 配置实战：从 0 到 1 打造自己的 IDE
+# Optixal's Neovim init.vim
 
-《学习 Neovim 全 lua 配置》已经在稀土掘金专业编辑的指点下完全重写。
+![image](https://user-images.githubusercontent.com/19287477/167697617-3b26ac45-2a86-436d-af7a-93968467e82c.png)
+_Windows 10, Ubuntu WSL - Windows Terminal_
 
-新名字是：[《Neovim 配置实战：从 0 到 1 打造自己的 IDE》](https://juejin.cn/book/7051157342770954277)
+![Neovim-New](https://user-images.githubusercontent.com/19287477/166893010-43bbbf6e-f59b-44a3-b841-359f21d464d6.gif)
+_Ubuntu 22.04 - Kitty Terminal_
 
-好消息是新版本由掘金专业把关，目录经过了优化，解释也更加详细，所有动图都重新截取了。
+Just like how a 🔪 is undoubtedly the most important tool of a sushi chef, a text editor (and perhaps a good mechanical keyboard) is undoubtedly the most important tool of a developer. It has to be robust, versatile, extensible, performant and powerful. Occasionally, it requires sharpening in order to produce quality work one is proud of. Also, it has to look and feel good in hand so that one will enjoy using it on every use.
 
-内容翻新的同时代码也进行了比较大幅的改动，文章质量肯定更高了。
+My neovim config has been updated for neovim 0.7.0. It is now a hybrid init.vim with lua support. It features core plugins including [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), [nvim-cmp](https://github.com/hrsh7th/nvim-cmp), [telescope](https://github.com/nvim-telescope/telescope.nvim), [lualine](https://github.com/nvim-lualine/lualine.nvim) and [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua).
 
-坏消息是变成了收费小册了，但价格不高，掘金常年打折，如没折扣可联系我索取作者专属 7 折的折扣码。
+The colorsheme used is my favorite, [Dracula](https://github.com/dracula/vim), and the font used is my favorite too, [Iosevka](https://github.com/be5invis/Iosevka).
 
->更新一下分支说明
->- `bak` 分支是最早期还没有小册时候的旧版备份已经过期，不建议参考
->- `main` 分支是小册的版本，为保持小册内容稳定已在 plugins.lua 中[锁定了插件版本](https://github.com/nshen/learn-neovim-lua/blob/7af70083eaf469fccb2ad601eaeabac150d080e5/lua/plugins.lua#L151-L154)，是小册的对应源码
->- `v2` 分支是小册完成后，插件更新对应配置的持续修改，如果取消了`main`分支插件版本锁定，建议对应此分支更新配置。
->- 随着 v2 分支改动越来越多，我创建了全新项目 [InsisVim](https://github.com/nshen/InsisVim)，欢迎大佬们一起参与提 PR 
+## Installing and Updating
 
-## 新版购买链接
+### Automated Installation
 
-[Neovim 配置实战：从 0 到 1 打造自己的 IDE](https://juejin.cn/book/7051157342770954277)
+```sh
+git clone https://github.com/Optixal/neovim-init.vim.git
+cd neovim-init.vim/convenience
+./install.sh
+```
 
-第一次写收费小册，希望大家能够少喝一杯咖啡，十几块钱支持一下。 
+Automatically installs my configuration along with dependencies into your system. Tested on Ubuntu 22.04. I highly suggest reading and understanding each line of the installation script before running it, especially if you are using other Linux distros, or macOS. For macOS, manually run the commands, and use `homebrew` instead of `apt`.
 
-下边是掘金小册介绍：
+### Manual Installation
 
-![0a0f17793e35487d939955ce1ddc1ba5_tplv-k3u1fbpfcp-watermark](https://user-images.githubusercontent.com/181506/158575190-4cc79ee3-1485-45d6-a82c-6449242cbfc7.jpg)
+The following are high-level steps to install my neovim config:
+1. Download this repo
+2. Install dependencies: wget, curl, git, gcc, ripgrep and python3 (along with pip and venv)
+3. Install [neovim 0.7.0+](https://github.com/neovim/neovim)
+4. Add neovim to your PATH
+5. Install node (with nvm or n) (along with npm)
+6. Install [language servers](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages) with npm
+7. Set up a virtual environment for Python dependencies with venv, and install Python dependencies while in it with pip
+8. Install [vim-plug](https://github.com/junegunn/vim-plug)
+9. Make a copy of this repo's `init.vim` and place it in `~/.config/nvim/`. Delete everything after `call plug#end()`
+10. Install plugins by entering neovim and running the command `:PlugInstall`
+11. Copy this repo's full version of `init.vim` and the directory `lua/` to `~/.config/nvim/`
+12. Done!
 
+For exact commands to run, refer to `convenience/install.sh`.
 
-由于近来 VSCode 越来越臃肿，已经逐渐脱离了其高性能、轻量级的定位。而随着 Neovim 0.5+ 版本的发布，内置 LSP 的支持，让 Lua  成了编辑器的一等语言，使得古老的 VIM 编辑器变得更加现代化了。
+### Post Installation
 
-加上这些年 Windows 系统的快速发展 ，WSL2 、Windows Terminal 的推出，Windows 命令行也有了 UTF8、GPU 加速文本渲染引擎的支持，使我们有能力，也有理由转到更加轻便高效、面向未来的 Neovim 编辑器上做程序开发，提升开发效率。
+#### Download and install a Nerd Font
 
-如果你在 Google 上搜索 "Years of Vim" ，会看到很多高手都已经用 VIM 编辑器 10 年以上了，他们都会一直维护一个属于自己独一无二的配置，彼此各不相同，通过不断地调教，使之越来越适合自己，达到了“人剑合一”的境界。
+nvim-cmp, telescope, lualine and nvim-tree require a patched font to display icons properly. [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) are recommended. Run `./font_install.sh` to download and install Iosevka Term Nerd Font into your `~/.fonts` directory, or run the command manually:
 
-学会调教  Neovim  在程序开发生涯中是非常有意义的一件事，**让编辑器适配你的习惯，而不是无限地追赶编辑器的更新，也是成为“10 倍速程序员”必经之路。**
+```sh
+curl -fLo ~/.fonts/Iosevka\ Term\ Nerd\ Font\ Complete\ Mono.ttf --create-dirs https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Regular/complete/Iosevka%20Term%20Nerd%20Font%20Complete%20Mono.ttf
+fc-cache -rv
+```
 
-这里展示一下学完本小册后，大致的配置效果：
+Once downloaded, open your terminal's preferences and change the font to "Iosevka Term Mono". If your terminal allows to differentiate the regular, bold, italics and bold-italics, make sure to download the other variations as well.
 
-![features2](https://user-images.githubusercontent.com/181506/158575466-2d3be027-a4a3-482f-b884-02b20f66fba3.gif)
+If the font does not appear in your terminal settings, try restarting your terminal. If it's still not appearing, your OS' font directory may not be `~/.fonts`. Find out which directory your fonts are stored in, and place the downloaded font file in that directory instead. Or, install the font normally using your OS' GUI.
 
-从 VSCode 转移到 Neovim 时 ，我也看了很多文档，参考了很多配置资料，尝试了很多插件，走了很多弯路，最终我对 Neovim 的配置已经完全可以满足我对代码编辑器的需求了。我把配置方法写成小册，通过对这个小册的学习，你也可以把 Neovim  配置成你希望的样子，也许跟我的完全不同。
+If you are using a GPU-accelerated terminal like kitty, or if the font starts to look weird in your terminal, it could be better to [avoid using a Nerd Font and use the original font instead](https://sw.kovidgoyal.net/kitty/faq/?highlight=nerd#kitty-is-not-able-to-use-my-favorite-font), while still using a single Nerd Font as the fallback for the symbols.
 
-小册分为 **基建篇** 和 **代码篇**。
+So, instead of installing:
+* Iosevka Term Nerd Font Mono (Regular, Bold, Italics, Bold-Italics) (Characters & symbols will be used)
 
-在 **基建篇** 中，我们会先从安装 Neovim 开始，介绍配置文件位置，以及我们应该如何组织配置文件、快捷键如何设置、插件如何安装和管理。然后通过逐个介绍目前流行的插件安装方式和使用方法来补全文本编辑器所需的所有功能。
+Install this:
+* Iosevka (Regular, Bold, Italics, Bold-Italics) (Characters will be used)
+* Iosevka Term Nerd Font Mono (Regular) (Symbols will be used)
 
-基建篇完成后，你将会得到一个现代化的文本编辑器。
+Your terminal should pick up the symbols automatically from the single nerd font as the fallback font.
 
-在 **代码篇** 中，我们会补全程序开发相关的功能，包括如何实现代码高亮、什么是内置 LSP、如何配置内置 LSP、代码如何补全
-代码格式化、UI 可否美化等。之后还会专门针对前端开发和 rust 开发所必备的插件配置介绍，一步一步帮助你将手中的 Neovim 装配成 VSCode 般的开发环境。
+#### Install grammars and language servers
 
-![xmind.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0540cdcdd8314d198eb79cead70442c7~tplv-k3u1fbpfcp-watermark.image?)
+##### Grammar (for nvim-treesitter highlighting)
 
-## 你会学到什么？
+As I focus on Python development, I ensured installation of python grammar within `treesitter-config.lua` to get proper highlighting when editing Python files. To install additional grammars (e.g. TypeScript), run the following in nvim:
 
-本小册包含大量**动图演示**，章节相对独立，参照配置每完成一章，即可立刻看到反馈效果。总的来说，你将收获：
+```
+:TSInstall typescript
+```
 
-- 基于最新版本的 Neovim ，从零开始基于 Lua 搭建现代化 Neovim 开发环境。
-- 了解 Neovim 的配置原理与思路，以及完整的配套源码。
-- 最重要的是你会得到属于你的专属 Neovim 版本。
+For other languages, refer to [this list](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages).
 
-![0-2.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/645c93365927495aa51f7951b5437d8c~tplv-k3u1fbpfcp-watermark.image?)
+##### Language server (for nvim-lspconfig and nvim-cmp completion)
 
-## 适宜人群
+As I focus on Python development, the installation script installs Python language server (pyright) by default. To install additional language servers (e.g. TypeScript):
 
-- 适合有一点 VIM 基础的使用者（至少知道怎么编辑文件和退出 VIM 😁）。
-- 有程序开发基础，有可以访问 Github 的网络环境，想要提升开发效率与开发体验的程序开发人员。
-- 想要系统学习 Neovim 配置，却被网上零散过时的 VIM 配置教程困扰的同学们。
+```sh
+npm install -g typescript-language-server
+```
+
+Then append it to the array of servers in the lua section of `init.vim`:
+
+```lua
+local servers = {
+    'pyright',
+    'tsserver',
+}
+```
+
+For other language servers, refer to [this list](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) to see the packages you need to install.
+
+#### Alias vim
+
+It may be easier for you to type `vim` instead of `nvim` everytime you edit a file, so aliasing it could save you some trouble. Add an alias to your bashrc/zshrc/somerc or aliases file to alias nvim to vim:
+
+```sh
+echo "alias vim='nvim'" >> ~/.zshrc
+```
+
+#### Fix nvim + tmux issues
+
+Running nvim within a tmux session may cause certain unwanted issues like escape key lag, or displaying wrong colors. Run `cat .tmux.conf >> ~/.tmux.conf` or manually add these to your `~/.tmux.conf` configuration file to address the issues:
+
+```sh
+set -sg escape-time 5 # fix vim esc delay
+set -g default-terminal "screen-256color" # ensures vim uses right $TERM color, default is "screen"
+set -ga terminal-overrides ",*256col*:Tc" # fixes vim reproducing slightly wrong colors in tmux
+```
+
+#### Install and update plugins
+
+Run these to install new plugins, update or delete existing plugins, or upgrade vim-plug itself.
+
+* Install plugins: `:PlugInstall` in nvim. Run this after adding new plugins (e.g. `Plug 'username/repo'`) to init.vim
+* Update plugins: `:PlugUpdate` in nvim
+* Delete unused plugins: `:PlugClean` in nvim
+* Update vim-plug itself: `:PlugUpgrade` in nvim
+
+## Custom Mapped Commands in Normal Mode
+
+Core:
+* `,` - Map leader, nearly all my custom mappings starts with pressing the comma key
+* `,q` or `\\` - Toggle sidebar filetree viewer (nvim-tree.lua)
+* `,r` - Refresh/source ~/.config/nvim/init.vim
+* `,t` - Trim all trailing whitespaces
+* `,a` - Auto align variables (vim-easy-align), eg. do `,a=` while your cursor is on a bunch of variables to align their equal signs
+* `,h` - Toggle rainbow parentheses highlighting (rainbow-parentheses.vim)
+* `,j` - Set filetype to "journal" which makes the syntax highlighting beautiful when working on regular text files and markdown
+* `,k` - Toggle coloring of hex colors
+* `,l` - Toggle Limelight mode, highlight the lines near cursor only (Limelight)
+* `,,` - Remove highlights (after searching with `/`)
+* `<Tab>` - Next buffer
+* `<Shift-Tab>` - Previous buffer
+* `,$s` - New terminal in horizontal split
+* `,$v` - New terminal in vertical split
+
+Python:
+* `,d` - Automatically generate Python docstrings while cursor is hovering above a Python function or class (vim-pydocstring and doq)
+* `,x` - Auto format Python scripts (yapf)
+
+Telescope:
+* `,ff` - Find files
+* `,fg` - Live grep from files
+* `,fb` - Buffers
+* `,fh` - Help tags
+* `,fc` - Change colorscheme
+* `,f/` - Fuzzy find current buffer
+
+Other mappings:
+* `,c<Space>` - Toggle comment for current line (Nerd Commenter)
+* `<Alt-r/c>` - Toggle RGB color picker (vCoolor) (uses GTK+, requires yad or zenity)
+* [nvim-lspconfig mappings](https://github.com/neovim/nvim-lspconfig#suggested-configuration)
+
