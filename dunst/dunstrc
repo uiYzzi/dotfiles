@@ -1,117 +1,118 @@
 # See dunst(5) for all configuration options
 
 [global]
-    ### Display ###
+    ### 显示 ###
 
-    # Which monitor should the notifications be displayed on.
+    # 应该在哪个显示器上显示通知。
     monitor = 0
 
-    # Display notification on focused monitor.  Possible modes are:
-    #   mouse: follow mouse pointer
-    #   keyboard: follow window with keyboard focus
-    #   none: don't follow anything
+    # 在焦点显示器上显示通知。可能的模式包括:
+    #   mouse: 跟随鼠标指针
+    #   keyboard: 跟着窗口键盘焦点
+    #   none: 不跟随任何东西
     #
-    # "keyboard" needs a window manager that exports the
-    # _NET_ACTIVE_WINDOW property.
-    # This should be the case for almost all modern window managers.
+    # "keyboard" 需要一个窗口管理器，该窗口管理器导出
+    # _NET_ACTIVE_WINDOW 属性
+
+    # 几乎所有的现代窗口管理器都是这样
     #
-    # If this option is set to mouse or keyboard, the monitor option
-    # will be ignored.
+    # 如果此选项设置为鼠标或键盘，则显示器选项
+    # 将被忽略
     follow = none
 
-    ### Geometry ###
+    ### 图形 ###
 
-    # dynamic width from 0 to 300
+    # 动态宽度从0到300
     # width = (0, 300)
-    # constant width of 300
+
+    # 恒定宽度300
     width = 300
 
-    # The maximum height of a single notification, excluding the frame.
+    # 单个通知的最大高度(不包括框架)
     height = 300
 
-    # Position the notification in the top right corner
+    # 将通知放置在右上角
     origin = top-right
 
-    # Offset from the origin
+    # 从原点偏移
     offset = 10x50
 
-    # Scale factor. It is auto-detected if value is 0.
+    # 比例因子。如果值为0，则自动检测
     scale = 0
 
-    # Maximum number of notification (0 means no limit)
+    # 通知的最大数量(0表示没有限制)
     notification_limit = 0
 
-    ### Progress bar ###
+    ### 进度条 ###
 
-    # Turn on the progess bar. It appears when a progress hint is passed with
-    # for example dunstify -h int:value:12
+    # 打开进度条，当传递进度提示时会出现
+    # 例如 dunstify -h int:value:12
     progress_bar = true
 
-    # Set the progress bar height. This includes the frame, so make sure
-    # it's at least twice as big as the frame width.
+    # 设置进度条的高度。这包括框架，所以要确保
+    # 至少是画面宽度的两倍
     progress_bar_height = 10
 
-    # Set the frame width of the progress bar
+    # 设置进度条的帧宽
     progress_bar_frame_width = 1
 
-    # Set the minimum width for the progress bar
+    # 设置进度条的最小宽度
     progress_bar_min_width = 150
 
-    # Set the maximum width for the progress bar
+    # 设置进度条的最大宽度
     progress_bar_max_width = 300
 
 
-    # Show how many messages are currently hidden (because of
+    # 显示当前隐藏了多少消息 (because of
     # notification_limit).
     indicate_hidden = yes
 
-    # The transparency of the window.  Range: [0; 100].
-    # This option will only work if a compositing window manager is
+    # 窗口的透明度。范围: [0; 100]
+    # 此选项只有在桌面合成是
     # present (e.g. xcompmgr, compiz, etc.). (X11 only)
     transparency = 0
 
-    # Draw a line of "separator_height" pixel height between two
-    # notifications.
-    # Set to 0 to disable.
-    # If gap_size is greater than 0, this setting will be ignored.
+    # 在两个通知之间画一条像素高度的线。
+    # 设置为0禁用
+    # 如果 gap_size 大于0，此设置将被忽略
     separator_height = 2
 
-    # Padding between text and separator.
+    # 在文本和分隔符之间填充。
     padding = 8
 
-    # Horizontal padding.
+    # 水平填充
     horizontal_padding = 8
 
-    # Padding between text and icon.
+    # 在文本和图标之间填充
     text_icon_padding = 0
 
-    # Defines width in pixels of frame around the notification window.
-    # Set to 0 to disable.
+    # 定义通知窗口周围帧的像素宽度
+    # 设置为0禁用
     frame_width = 3
 
-    # Defines color of the frame around the notification window.
+    # 定义通知窗口周围框架的颜色
     frame_color = "#aaaaaa"
 
-    # Size of gap to display between notifications - requires a compositor.
-    # If value is greater than 0, separator_height will be ignored and a border
-    # of size frame_width will be drawn around each notification instead.
-    # Click events on gaps do not currently propagate to applications below.
+    # 通知之间显示的间隔大小-需要一个排序器
+    # 如果值大于0，则忽略 separator_height 并显示一个边框
+    # 大小为 frame_width 将在每个通知周围绘制
+    # 单击间隔上的事件当前不会传播到下面的应用程序
     gap_size = 0
 
-    # Define a color for the separator.
-    # possible values are:
-    #  * auto: dunst tries to find a color fitting to the background;
-    #  * foreground: use the same color as the foreground;
-    #  * frame: use the same color as the frame;
-    #  * anything else will be interpreted as a X color.
+    # 定义分隔符的颜色
+    # 可能的值是:
+    #  * auto: Dunst 试图找到一个适合背景的颜色
+    #  * foreground: 使用与前景相同的颜色
+    #  * frame: 使用与框架相同的颜色
+    #  * 其他颜色都会被解读为 X 颜色
     separator_color = frame
 
-    # Sort messages by urgency.
+    # 按紧急情况对消息进行排序
     sort = yes
 
-    # Don't remove messages, if the user is idle (no mouse or keyboard input)
-    # for longer than idle_threshold seconds.
-    # Set to 0 to disable.
+    # 不要删除消息，如果用户是空闲的(没有鼠标或键盘输入)
+    #  超过 idle_threshold 秒数.
+    # 设置为0禁用
     # A client can set the 'transient' hint to bypass this. See the rules
     # section for how to disable this if necessary
     # idle_threshold = 120
