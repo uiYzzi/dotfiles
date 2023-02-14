@@ -20,7 +20,7 @@ super + Escape
 
 # Launch Apps
 super + shift + {f,m,e}
-	{dolphin,alacritty --command musicfox,microsoft-edge-stable}
+	{thunar,alacritty --command musicfox,microsoft-edge-stable}
 
 #
 # bspwm hotkeys
