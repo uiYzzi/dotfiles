@@ -7,7 +7,7 @@ super + Return
 	qterminal
 
 # program launcher
-Super_L; @Super_L
+super + @space
 	~/.config/polybar/scripts/launcher.sh &
 super + x
 	~/.config/polybar/scripts/powermenu.sh &
