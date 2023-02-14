@@ -16,7 +16,7 @@ Plug 'mhinz/vim-startify'
 " vim-snazzy 主题插件
 Plug 'connorholyday/vim-snazzy'
 " markdown 预览插件
-Plug 'iamcco/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " rnvimr 文件管理插件
 Plug 'kevinhwang91/rnvimr'
 call plug#end()
