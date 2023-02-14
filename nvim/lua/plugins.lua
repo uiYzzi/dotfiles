@@ -76,7 +76,12 @@ packer.startup({
     -- surround
     use("ur4ltz/surround.nvim")
     -- Comment
-    use("numToStr/Comment.nvim")
+    use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
     -- nvim-autopairs
     use("windwp/nvim-autopairs")
     -- git
