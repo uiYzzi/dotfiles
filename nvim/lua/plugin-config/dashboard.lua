@@ -12,14 +12,14 @@ db.custom_footer = {
 
 db.custom_center = {
   {
+    icon = "  ",
+    desc = "文件管理器                           ",
+    action = "RnvimrToggle",
+  },
+  {
     icon = "  ",
     desc = "项目                                ",
     action = "Telescope projects",
-  },
-  {
-    icon = "  ",
-    desc = "搜索文件                              ",
-    action = "Telescope find_files",
   },
   {
     icon = "  ",
@@ -50,6 +50,11 @@ db.custom_center = {
   --   icon = "  ",
   --   desc = "Edit init.lua                       ",
   --   action = "edit ~/.config/nvim/init.lua",
+  -- },
+  -- {
+  --   icon = "  ",
+  --   desc = "Find file                           ",
+  --   action = "Telescope find_files",
   -- },
   -- {
   --   icon = "  ",

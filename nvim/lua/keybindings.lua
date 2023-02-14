@@ -44,6 +44,10 @@ map("v", "<C-k>", "5k", opt)
 map("n", "<C-u>", "10k", opt)
 map("n", "<C-d>", "10j", opt)
 
+-- rnvimr
+map("n", "f", ":RnvimrToggle", { noremap = true, silent = false })
+map("v", "f", ":RnvimrToggle", { noremap = true, silent = false })
+
 -- magic search
 map("n", "/", "/\\v", { noremap = true, silent = false })
 map("v", "/", "/\\v", { noremap = true, silent = false })

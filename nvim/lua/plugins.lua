@@ -65,6 +65,8 @@ packer.startup({
     -- project
     use("ahmedkhalf/project.nvim")
     use("p00f/nvim-ts-rainbow")
+    -- rnvimr
+    use("kevinhwang91/rnvimr")
     -- indent-blankline
     use("lukas-reineke/indent-blankline.nvim")
     --------------------- colorschemes --------------------
